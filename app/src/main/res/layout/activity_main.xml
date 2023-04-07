@@ -29,12 +29,7 @@
 
 
 
-        <Button
-            android:id="@+id/button_request"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="request  permissions"
-            android:textAllCaps="false" />
+
 
         <TextView
             android:id="@+id/text_granted"
@@ -54,16 +49,25 @@
             android:textSize="18sp"
             tools:text="B" />
 
+        <Button
+            android:layout_gravity="center"
 
+            android:id="@+id/buttonRequest"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="request  permissions"
+            android:textAllCaps="false" />
     </LinearLayout>
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:visibility="gone"
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        app:srcCompat="@android:drawable/ic_dialog_email"
+        android:contentDescription="TODO" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

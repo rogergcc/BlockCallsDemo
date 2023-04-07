@@ -6,6 +6,7 @@ import android.content.pm.PackageManager
 import android.os.Build
 import android.os.Bundle
 import android.widget.Toast
+import androidx.annotation.RequiresApi
 import androidx.appcompat.app.AlertDialog
 import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
@@ -21,6 +22,7 @@ class MainActivity : AppCompatActivity() {
 
     private lateinit var smsAndStoragePermissionHandler: RequestPermissionHandler
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
@@ -33,14 +35,17 @@ class MainActivity : AppCompatActivity() {
 //        appBarConfiguration = AppBarConfiguration(navController.graph)
 //        setupActionBarWithNavController(navController, appBarConfiguration)
 
-        binding.fab.setOnClickListener { view ->
+        binding.buttonRequest.setOnClickListener { view ->
             handleRequestPermission()
 //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                .setAction("Action", null).show()
         }
 
         smsAndStoragePermissionHandler = RequestPermissionHandler(this@MainActivity,
-            permissions = setOf(Manifest.permission.READ_PHONE_STATE, Manifest.permission.CALL_PHONE),
+            permissions = setOf(Manifest.permission.READ_PHONE_STATE,
+                Manifest.permission.CALL_PHONE,
+                Manifest.permission.ANSWER_PHONE_CALLS,
+            Manifest.permission.READ_CALL_LOG,Manifest.permission.PROCESS_OUTGOING_CALLS),
             listener = object : RequestPermissionHandler.Listener {
                 override fun onComplete(grantedPermissions: Set<String>, deniedPermissions: Set<String>) {
                     Toast.makeText(this@MainActivity, "complete", Toast.LENGTH_SHORT).show()
